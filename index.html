@@ -12,53 +12,86 @@
 
       body {
         position: relative;
-        height: 100vh;
-        width: 100vw;
+        margin: 1vh 1vw;
+        /* box-sizing: border-box; */
+        height: 98vh;
+        width: 98vw;
+        font-family: 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+        color: white;
+        font-size: 1.5rem;
+        border: 3px solid purple;
+      }
+
+      h2,
+      h3 {
+        color: black;
+        text-align: center;
+        margin: 0;
+      }
+
+      h2 {
+        margin: 10px 0;
+      }
+
+      .outer,
+      .middle,
+      .inner,
+      .click {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+      }
+
+      .outer,
+      .middle,
+      .inner {
+        padding: 15px 0 0 15px;
       }
 
       .outer {
         width: calc(1 * var(--org-size));
         height: calc(1 * var(--org-size));
         background-color: red;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
       }
 
       .middle {
         width: calc((2 / 3) * var(--org-size));
         height: calc((2 / 3) * var(--org-size));
         background-color: blue;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
       }
 
       .inner {
         width: calc((1 / 3) * var(--org-size));
         height: calc((1 / 3) * var(--org-size));
         background-color: green;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
-        filter: grayscale(0%);
       }
 
       .click {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        transform: translate(-50%, -50%);
+        background-color: #ffc107;
+        padding: 10px 20px;
+        font-family: inherit;
+        font-size: 15px;
+        font-weight: bolder;
       }
     </style>
   </head>
   <body>
+    <h2>
+      App created to demonstrate event propagation!.
+    </h2>
+    <h3>
+      Clicking any of the squares will propagate event to all ancestors.
+      Clicking the button however will stop event from propagating to any of the
+      square ancestors.
+    </h3>
     <div class="outer">
+      Outer Element
       <div class="middle">
+        Middle Element
         <div class="inner">
+          Inner Element
           <button class="click">Click Me</button>
         </div>
       </div>
