@@ -71,14 +71,24 @@
     <script>
       const elementArr = ['.outer', '.middle', '.inner'];
 
-      function clicker(event, stop) {
-        console.log('here', event.currentTarget);
+      function clicker(event, stop = false) {
+        if (stop) {
+          alert('You clicked button! No event propagation!');
+        } else {
+          const clickedOn = $(event.currentTarget).attr('class');
+          console.log('clickedOn ', clickedOn);
+          alert(
+            `Much propagation. You are now on ${$(event.currentTarget).attr(
+              'class'
+            )}`
+          );
+        }
       }
 
       elementArr.forEach(item =>
         $(item).click(function(event, stop) {
           if (stop) event.stopPropagation();
-          clicker(event, false);
+          clicker(event, stop);
         })
       );
 
