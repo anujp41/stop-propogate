@@ -63,39 +63,26 @@
         </div>
       </div>
     </div>
-    <script
-      src="https://code.jquery.com/jquery-3.4.1.min.js"
-      integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo="
-      crossorigin="anonymous"
-    ></script>
     <script>
       const elementArr = ['.outer', '.middle', '.inner'];
 
-      function clicker(event, stop = false) {
-        if (stop) {
-          alert('You clicked button! No event propagation!');
-        } else {
-          const clickedOn = $(event.currentTarget).attr('class');
-          console.log('clickedOn ', clickedOn);
-          alert(
-            `Much propagation. You are now on ${$(event.currentTarget).attr(
-              'class'
-            )}`
-          );
-        }
+      function clicker(element, stop = false) {
+        if (stop) alert('You clicked button! No event propagation!');
+        else alert(`Much propagation. You are now on ${element}`);
       }
 
       elementArr.forEach(item =>
-        $(item).click(function(event, stop) {
-          if (stop) event.stopPropagation();
-          clicker(event, stop);
+        document.querySelector(item).addEventListener('click', function(event) {
+          clicker(event.currentTarget.className, false);
         })
       );
 
-      $('button').click(function(event) {
-        event.stopPropagation();
-        $('.inner').trigger('click', true);
-      });
+      document
+        .querySelector('.click')
+        .addEventListener('click', function(event) {
+          event.stopPropagation();
+          clicker(event, true);
+        });
     </script>
   </body>
 </html>
